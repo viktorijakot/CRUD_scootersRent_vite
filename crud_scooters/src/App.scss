@@ -1,0 +1,134 @@
+#root {
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+* {
+  box-sizing: border-box;
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.create {
+  width: 50%;
+  // min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  &__form {
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 80%;
+    // border: 0.5px solid #535bf2;
+    // justify-content: center;
+    align-items: center;
+    input {
+      padding-left: 10px;
+      margin-bottom: 10px;
+      width: 70%;
+      height: 40px;
+    }
+    label {
+      text-align: left;
+      width: 70%;
+      color: #757575;
+    }
+    button {
+      margin-top: 20px;
+      width: 70%;
+    }
+  }
+}
+
+.scootersList {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  .scooter {
+    border: 0.5px solid #757575;
+    border-radius: 15px;
+    width: 90%;
+    margin-bottom: 20px;
+    text-align: left;
+    padding-left: 20px;
+    strong {
+      color: #535bf28e;
+    }
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 10px;
+    }
+    button:first-child:hover {
+      border-color: green;
+    }
+    button:last-child:hover {
+      border-color: crimson;
+    }
+  }
+}
+
+.moduleEdit {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(252, 250, 250, 0.225);
+  &__card {
+    background-color: #535bf2fe;
+    padding: 30px;
+    padding-top: 10px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    input {
+      margin-top: 10px;
+      padding: 5px 10px;
+    }
+    button {
+      margin-top: 10px;
+      width: 60%;
+    }
+    button:hover {
+      border-color: white;
+    }
+    .close {
+      margin: 0;
+      align-self: flex-end;
+      color: black;
+      font-weight: bold;
+      margin-right: -15px;
+      cursor: pointer;
+      transition-duration: 0.25s;
+    }
+    .close:hover {
+      font-size: larger;
+    }
+    .checkbox {
+      margin-top: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      input {
+        margin: 0;
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+}
