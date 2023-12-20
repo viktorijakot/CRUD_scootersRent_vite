@@ -29,6 +29,76 @@ export default function scootersReducer(state, action) {
       );
       localStorage.setItem("data", JSON.stringify(s));
       break;
+    case types.FILTER_KM_SCOOTERS_LIST:
+      if (action.payload === 1) {
+        s = s.map((sObj) =>
+          +sObj.totalRideKilometres === 0.0
+            ? {
+                ...sObj,
+                showKm: true,
+              }
+            : {
+                ...sObj,
+                showKm: false,
+              }
+        );
+      } else if (action.payload === 2) {
+        s = s.map((sObj) =>
+          +sObj.totalRideKilometres >= 0.0 && +sObj.totalRideKilometres < 50
+            ? {
+                ...sObj,
+                showKm: true,
+              }
+            : {
+                ...sObj,
+                showKm: false,
+              }
+        );
+      } else if (action.payload === 50) {
+        s = s.map((sObj) =>
+          +sObj.totalRideKilometres >= 50.0 && +sObj.totalRideKilometres < 100
+            ? {
+                ...sObj,
+                showKm: true,
+              }
+            : {
+                ...sObj,
+                showKm: false,
+              }
+        );
+      } else if (action.payload === 100) {
+        s = s.map((sObj) =>
+          +sObj.totalRideKilometres >= 100.0
+            ? {
+                ...sObj,
+                showKm: true,
+              }
+            : {
+                ...sObj,
+                showKm: false,
+              }
+        );
+      } else {
+        s = s.map((sObj) => ({ ...sObj, showKm: true }));
+      }
+      break;
+    case types.FILTER_DATE_SCOOTERS_LIST:
+      if (typeof action.payload === "string") {
+        s = s.map((sObj) =>
+          sObj.lastUseTime === action.payload
+            ? {
+                ...sObj,
+                showDate: true,
+              }
+            : {
+                ...sObj,
+                showDate: false,
+              }
+        );
+      } else {
+        s = s.map((sObj) => ({ ...sObj, showDate: true }));
+      }
+      break;
     default:
       break;
   }

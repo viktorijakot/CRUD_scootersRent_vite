@@ -3,17 +3,20 @@ import { ScootersProvider } from "./Components/ScootersContext";
 import Create from "./Components/Create";
 import ScootersList from "./Components/ScootersList";
 import Edit from "./Components/Edit";
-import { useContext } from "react";
-import { ScootersContext } from "./Components/ScootersContext";
+import Statistics from "./Components/Statistics";
+import FilterByKm from "./Components/FilterByKm";
+import FilterByDate from "./Components/FilterByDate";
 
 function App() {
-  // const { edit } = useContext(ScootersContext);
   return (
     <ScootersProvider>
-      {/* {scootersList && <Edit />} */}
-      {/* <Edit /> */}
       <div className="container">
-        <Create />
+        <div className="box">
+          <Create />
+          <FilterByKm />
+          <FilterByDate />
+          <Statistics />
+        </div>
         <ScootersList />
       </div>
     </ScootersProvider>

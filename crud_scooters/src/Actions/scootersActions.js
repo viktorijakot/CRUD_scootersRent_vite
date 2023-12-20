@@ -21,11 +21,23 @@ export function deleteScootersList(id) {
   };
 }
 
-export function editScootersList(id, km, busy) {
+export function editScootersList(editItem) {
   return {
     type: types.EDIT_SCOOTERS_LIST,
-    payload: id,
-    km,
-    busy,
+    payload: editItem,
+  };
+}
+
+export function filterKmScootersList(km) {
+  return {
+    type: types.FILTER_KM_SCOOTERS_LIST,
+    payload: km,
+  };
+}
+
+export function filterDateScootersList(date) {
+  return {
+    type: types.FILTER_DATE_SCOOTERS_LIST,
+    payload: date,
   };
 }

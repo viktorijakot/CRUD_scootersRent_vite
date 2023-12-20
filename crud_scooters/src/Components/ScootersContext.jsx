@@ -5,6 +5,8 @@ import {
   getScootersList,
   deleteScootersList,
   editScootersList,
+  filterKmScootersList,
+  filterDateScootersList,
 } from "../Actions/scootersActions";
 import { v4 as uuidv4 } from "uuid";
 
@@ -13,6 +15,14 @@ export const ScootersContext = createContext();
 export const ScootersProvider = ({ children }) => {
   const [scootersList, dispachScootersList] = useReducer(scootersReducer, []);
   const [edit, setEdit] = useState(null);
+
+  const getAllKm = (scootersListArray) => {
+    let km = 0;
+    for (let i = 0; i < scootersListArray.length; i++) {
+      km += +scootersListArray[i].totalRideKilometres;
+    }
+    return km.toFixed(2);
+  };
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -25,6 +35,8 @@ export const ScootersProvider = ({ children }) => {
       isBusy: 1,
       lastUseTime: e.target[0].value,
       totalRideKilometres: (+e.target[1].value).toFixed(2),
+      showKm: true,
+      showDate: true,
     };
     if (item) {
       dispachScootersList(createScootersList(item));
@@ -58,6 +70,25 @@ export const ScootersProvider = ({ children }) => {
     }
   }, []);
 
+  const handleFilterKm = (e) => {
+    const filterValue = +e.target.value;
+    if (filterValue) {
+      dispachScootersList(filterKmScootersList(filterValue));
+    }
+  };
+
+  const handleFilterDate = (e) => {
+    const filterValue = e.target.value;
+    if (filterValue) {
+      dispachScootersList(filterDateScootersList(filterValue));
+    }
+  };
+
+  const handleFilterDateReset = () => {
+    const filterValue = 0;
+    dispachScootersList(filterDateScootersList(filterValue));
+  };
+
   return (
     <ScootersContext.Provider
       value={{
@@ -67,6 +98,10 @@ export const ScootersProvider = ({ children }) => {
         setEdit,
         edit,
         handleEdit,
+        getAllKm,
+        handleFilterKm,
+        handleFilterDate,
+        handleFilterDateReset,
       }}
     >
       {children}
